@@ -1,0 +1,1 @@
+// Crea un objeto ‘producto’ con las propiedades: ‘nombre’ (string), ‘precio’ (number).
