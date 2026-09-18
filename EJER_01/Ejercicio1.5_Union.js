@@ -5,7 +5,7 @@ let estudiantes = [{
 
     nombre: "Adriana",
     apellidos: "Gutierrez de la Vega",
-    calificacion: 7,85,
+    calificacion: 7.85,
     aprobado: true
 },
 
