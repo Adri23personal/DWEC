@@ -15,15 +15,15 @@ let cursos = [
     estudiantes : [
     {
         nombre : "Pedro",
-        calificacacion : 5
+        calificacion : 5
     },
     {
         nombre : "Roberto",
-        calificacacion : 3
+        calificacion : 3
     },
     {
         nombre : "Julia",
-        calificacacion : 7
+        calificacion : 7
     }] },
 
     {
@@ -33,15 +33,15 @@ let cursos = [
     estudiantes : [
     {
         nombre : "Belén",
-        calificacacion : 9
+        calificacion : 9
     },
     {
         nombre : "David",
-        calificacacion : 5
+        calificacion : 5
     },
     {
         nombre : "Rubén",
-        calificacacion : 6
+        calificacion : 6
     }] },
 
     {
@@ -51,15 +51,15 @@ let cursos = [
     estudiantes : [
     {
         nombre : "Silvia",
-        calificacacion : 10
+        calificacion : 10
     },
     {
         nombre : "Alejandro",
-        calificacacion : 4.85
+        calificacion : 4.85
     },
     {
         nombre : "Pablo",
-        calificacacion : 8
+        calificacion : 8
     }] },
 
     {
@@ -69,15 +69,15 @@ let cursos = [
     estudiantes : [
     {
         nombre : "Nieves",
-        calificacacion : 7
+        calificacion : 7
     },
     {
         nombre : "Iván",
-        calificacacion : 6
+        calificacion : 6
     },
     {
         nombre : "Juan",
-        calificacacion : 4
+        calificacion : 4
     }] }
 
 ]
@@ -85,15 +85,59 @@ let cursos = [
 // 2. Utiliza `.map()` para crear un nuevo array `resumenCursos` que contenga objetos con:
 // - `nombreCurso`
 // - `promedioCalificaciones` (promedio de las calificaciones de los estudiantes)
-let resumenCursos 
+let resumenCursos = cursos.map(unCurso => {
+    let suma = 0
+
+    for(x=0; x < unCurso.estudiantes.length; x++) {
+        //Dame el elemento que está en la posición x del array.
+        suma = suma + unCurso.estudiantes[x].calificacion
+    }
+
+    let promedio = suma / unCurso.estudiantes.length;
 
 
-// 3. Utiliza `.filter()` para obtener un array `cursosDestacados` que contenga solo los cursos cuyo promedio de calificaciones sea mayor o igual a 7.
+    return {
+        nombreCurso :  unCurso.nombre,
+        promedioCalificaciones : promedio
+
+    }
+})
+
+
+// 3. Utiliza `.filter()` para obtener un array `cursosDestacados` que contenga 
+// solo los cursos cuyo promedio de calificaciones sea mayor o igual a 7.
+let cursosDestacados = resumenCursos.filter(resumen => {
+
+    if(resumen.promedioCalificaciones >= 7) {
+        return true
+
+    } else {
+        return false
+    }
+    
+});
 
 // 4. Recorre los cursos destacados e imprime en consola un mensaje como:
+// `"📘 El curso [nombreCurso] tiene un promedio de [promedio] y es considerado destacado."` 
+for(x=0; x < cursosDestacados.length; x++) {
+    console.log(`El curso ${cursosDestacados[x].nombreCurso} tiene un promedio de ${cursosDestacados[x].promedioCalificaciones} y es considerado destacado.`)
+}
 
-// `"📘 El curso [nombreCurso] tiene un promedio de [promedio] y es considerado destacado."`
 
 // 5. Verifica si hay algún estudiante con calificación menor a 4 en cada curso. Si lo hay, imprime:
+// `"⚠️ Atención: En el curso [nombreCurso] hay estudiantes con calificaciones muy bajas."` 
 
-// `"⚠️ Atención: En el curso [nombreCurso] hay estudiantes con calificaciones muy bajas."`
+// Recorro cursos
+for (let x = 0; x < cursos.length; x++) {
+
+    // Array de estudiantes del curso que estoy recorriendo
+    for (let y = 0; y < cursos[x].estudiantes.length; y++) {
+
+        //  y avanza primero y hace todos los bucles, luego aumenta x
+        if (cursos[x].estudiantes[y].calificacion < 4) {
+            console.log(`⚠️ Atención: En el curso ${cursos[x].nombre} hay estudiantes con calificaciones muy bajas.`);
+        }
+
+    }
+}
+
