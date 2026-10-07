@@ -16,30 +16,51 @@
 //     en un array de objetos { nombre, categoria, precio, stock }.
 //     Si lo que recibe no es un array, devuelve [].
 export const crearCatalogo = (matriz) => {
-  // Tu código aquí
+  if(!Array.isArray(matriz)) {
+    return []
+  }
+    return matriz.map(filaa => 
+    ({
+      nombre: filaa[0],
+      categoria: filaa[1],
+      precio: filaa[2],
+      stock: filaa[3] 
+    })
+      
+    )
 };
 
 // 1.2 Devuelve un catálogo NUEVO con las novedades (que llegan en
 //     formato matriz) añadidas al final.
 export const ampliarCatalogo = (catalogo, matrizNovedades) => {
-  // Tu código aquí
+  return catalogo.concat(crearCatalogo(matrizNovedades))
 };
 
 // 1.3 Devuelve los nombres de todos los productos en orden
 //     alfabético, respetando las tildes ('Vinilo Ópera' va tras 'Vinilo Jazz').
 export const nombresOrdenados = (catalogo) => {
-  // Tu código aquí
+
+  //map crea una copia de nombres para que luego sort lo modifique
+  // En este caso utilizo sort para ordenar y luego para comparar con localeCompare
+  return catalogo.map(productos => productos.nombre).sort((a, b) => a.localeCompare(b) )
+    
+  
 };
 
 // 1.4 Devuelve una COPIA del catálogo ordenada por precio,
 //     de menor a mayor o, si descendente es true, de mayor a menor.
 export const ordenarPorPrecio = (catalogo, descendente = false) => {
-  // Tu código aquí
-};
+  let copia = [...catalogo].sort((a, b) => a.precio - b.precio)
+
+if(descendente === true) {
+  copia.reverse()
+}
+  return copia
+}; 
 
 // 1.5 Devuelve los nombres de los tres productos más baratos.
 export const tresMasBaratos = (catalogo) => {
-  // Tu código aquí
+  return ordenarPorPrecio(catalogo).slice(0,3).map
 };
 
 // ================================================================
